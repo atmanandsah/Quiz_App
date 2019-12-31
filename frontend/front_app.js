@@ -81,13 +81,20 @@ function renderQuestionList(questions_list){
         var childrenOfCardBody = childrenOfListItem[1].children;
         //change card question
         childrenOfCardBody[0].innerText = questions_list[i].name;
-        /*document.getElementById('question_list').appendChild(list_item2);
-
+        /*document.getElementById('question_list').appendChild(list_item2);*/
+        var options = questions_list[i].option.split('');
         var childrenOfForm = childrenOfCardBody[1].children;
-        for(var i=0;i<childrenOfForm.length;i++){
-            var childrenOfOptions = childrenOfForm[i].children;
-
-        }*/
+        for(var j=0;j<childrenOfForm.length;j++){
+            var childrenOfOptions = childrenOfForm[j].children;
+            var input_radio = childrenOfOptions[0];
+            var input_label = childrenOfOptions[1];
+            var option_id_text = "q"+i+"op"+j;
+            input_radio.setAttribute("name","question_"+i+"_options");
+            input_radio.setAttribute("value",options[j]);
+            input_radio.setAttribute("id",option_id_text);
+            input_label.innerText = options[j];
+            input_label.setAttribute("for",option_id_text);
+        }
         list_parent.appendChild(list_item);
     }
     quizQuestionListContainer.appendChild(list_parent)
@@ -104,8 +111,8 @@ window.onload = function(){
     headingTitle = document.getElementById('heading');
     quizListContainer = document.getElementById('quiz_container')
     quizQuestionListContainer = document.getElementById('question_container')
-    // questionItemTemplate = document.getElementsByClassName('question-template')[0];
-    // questionItemTemplate = questionItemTemplate.parentElement.removeChild(questionItemTemplate);
+    questionItemTemplate = document.getElementsByClassName('question-template')[0];
+    questionItemTemplate = questionItemTemplate.parentElement.removeChild(questionItemTemplate);
 
     getQuizListFromApi()
     .then((quiz_list)=>{
