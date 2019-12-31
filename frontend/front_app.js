@@ -20,6 +20,7 @@ function getQuizListFromApi(){
     return fetch("http://localhost:8081/api/quiz")
     .then((res)=>res.json())
     .then((data)=>{
+        console.log(data);
         return data;
     })
     .catch((err)=>console.log(err))
@@ -103,8 +104,8 @@ window.onload = function(){
     headingTitle = document.getElementById('heading');
     quizListContainer = document.getElementById('quiz_container')
     quizQuestionListContainer = document.getElementById('question_container')
-    questionItemTemplate = document.getElementsByClassName('question-template')[0];
-    questionItemTemplate = questionItemTemplate.parentElement.removeChild(questionItemTemplate);
+    // questionItemTemplate = document.getElementsByClassName('question-template')[0];
+    // questionItemTemplate = questionItemTemplate.parentElement.removeChild(questionItemTemplate);
 
     getQuizListFromApi()
     .then((quiz_list)=>{
