@@ -21,6 +21,7 @@ function getQuizListFromApi(){
     .then((res)=>res.json())
     .then((data)=>{
         console.log(data);
+        
         return data;
     })
     .catch((err)=>console.log(err))
@@ -82,7 +83,7 @@ function renderQuestionList(questions_list){
         //change card question
         childrenOfCardBody[0].innerText = questions_list[i].name;
         /*document.getElementById('question_list').appendChild(list_item2);*/
-        var options = questions_list[i].option.split('');
+        var options = questions_list[i].option.split(',');
         var childrenOfForm = childrenOfCardBody[1].children;
         for(var j=0;j<childrenOfForm.length;j++){
             var childrenOfOptions = childrenOfForm[j].children;
